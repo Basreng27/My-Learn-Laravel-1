@@ -89,4 +89,15 @@ class AuthController extends BaseModule
             return redirect()->back()->withInput()->withErrors(['Login gagal. Pastikan email dan password benar.']);
         }
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }

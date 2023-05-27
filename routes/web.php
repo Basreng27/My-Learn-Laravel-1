@@ -19,20 +19,23 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// logout
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+// Login
 Route::prefix('/login')->middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
     Route::post('process-login', [AuthController::class, 'processLogin'])->name('process-login');
 });
 
+// Regist
 Route::prefix('/regist')->middleware('guest')->group(function () {
     Route::get('regist', [AuthController::class, 'regist'])->name('regist');
     Route::post('process-regist', [AuthController::class, 'processRegist'])->name('process-regist');
 });
 
-
-
-Route::group(['middleware' => ['verified', 'auth', 'acl']], function () {
+// Logged
+Route::group(['middleware' => ['verified', 'auth']], function () {
     // Dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

@@ -13,6 +13,8 @@ class User extends BaseModel implements AuthenticatableContract
     use HasFactory, Authenticatable;
 
     protected $table = 'users';
+    protected $keyType = 'string'; // type data primary key
+    protected $logFillable = true; // fillable
     public $timestamps = true;
     protected $fillable = [
         'user_id',
