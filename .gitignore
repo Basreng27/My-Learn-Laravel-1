@@ -17,3 +17,27 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Laravel specific
+.env
+vendor/
+node_modules/
+public/storage/
+public/hot/
+storage/*.key
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/testing/
+storage/framework/views/
+bootstrap/cache/
+
+# IDE specific
+.phpstorm.meta.php
+.phpstorm.workspace.xml
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -28,11 +28,11 @@ class MakeModule extends Command
     {
         $modulName = $this->argument('moduleName');
 
-        Artisan::call('make:controller', [
+        Artisan::call('make:controllerCustom', [
             'name' => $modulName . 'Controller'
         ]);
 
-        Artisan::call('make:model', [
+        Artisan::call('make:modelCustom', [
             'name' => $modulName
         ]);
 

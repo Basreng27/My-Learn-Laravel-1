@@ -1,0 +1,17 @@
+{{class}}.php
+
+<?php
+
+namespace App\Services;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt; //package untuk encrpy decrypt
+
+use App\Bases\BaseServices;
+use App\Models\User;
+
+class {{ class }} extends BaseServices
+{
+
+}

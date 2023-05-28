@@ -1,0 +1,22 @@
+{{class}}.php
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Bases\BaseModule;
+use Illuminate\Http\Request;
+
+class {{ class }} extends BaseModule
+{
+    public function __construct()
+    {
+        $this->module = '';
+        $this->pageTitle = '';
+        $this->pageSubTitle = '';
+
+        $GLOBALS['module'] = $this->module;
+        $GLOBALS['pageTitle'] = $this->pageTitle;
+        $GLOBALS['pageSubTitle'] = $this->pageSubTitle;
+    }
+}
