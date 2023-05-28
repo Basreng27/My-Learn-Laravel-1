@@ -21,4 +21,18 @@ class MenuController extends BaseModule
             'routes' => Service::getRoutesAdmin('Select')
         ]);
     }
+
+    public function data(Request $request)
+    {
+        $result = Service::data($request);
+
+        return $this->serveJSON($result);
+    }
+
+    public function store(Request $request)
+    {
+        $result = Service::store($request);
+
+        return $this->serveJSON($result);
+    }
 }

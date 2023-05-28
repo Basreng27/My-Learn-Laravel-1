@@ -19,6 +19,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <div id="menu"></div>
                                         <ul id="sortable-list">
                                             <li>Item 1
                                                 <ul class="sortable-sub-list">
@@ -93,6 +94,29 @@
                     name: 'sortable-group', // Gunakan nama grup yang sama
                     name: 'sortable-sub-group', // Gunakan nama grup yang sama
                 },
+            });
+        });
+
+        $(function() {
+            $.get('{{ route('data-' . strtolower($module)) }}', function(out) {
+                var data = out.data;
+
+                // Ambil elemen ul
+                var element = document.getElementById('menu');
+
+                var elementUl = document.createElement('ul');
+                elementUl.classList.add('sortable-list');
+
+                // loop data
+                data.forEach(function(item) {
+                    var elementLi = document.createElement('li');
+
+                    elementLi.textContent = item.label
+
+                    var li = elementUl.appendChild(elementLi);
+
+                    element.appendChild(li);
+                })
             });
         });
     </script>

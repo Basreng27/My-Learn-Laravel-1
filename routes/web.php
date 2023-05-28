@@ -44,6 +44,8 @@ Route::group(['middleware' => ['verified', 'auth']], function () {
     Route::prefix('/admin')->group(function () {
         // Menu
         Route::get('menu', [MenuController::class, 'index'])->name('menu');
+        Route::post('save-menu', [MenuController::class, 'store'])->name('save-menu');
+        Route::get('data-menu', [MenuController::class, 'data'])->name('data-menu');
         // Route::resource('menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
         // // Route::delete('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
         // Route::get('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');

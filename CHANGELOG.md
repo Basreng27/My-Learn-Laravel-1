@@ -22,9 +22,10 @@ CREATE TABLE menus (
     parent_id UUID,
     label VARCHAR(255) NOT NULL,
     code VARCHAR(255),
-    url VARCHAR(255) NOT NULL,
-    icon VARCHAR(255) NOT NULL,
+    url VARCHAR(255),
+    icon VARCHAR(255),
 	created_at TIMESTAMP,
 	updated_at TIMESTAMP,
 	deleted_at TIMESTAMP
 );
+ALTER TABLE menus ADD COLUMN sequence INT;

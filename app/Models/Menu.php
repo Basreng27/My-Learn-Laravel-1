@@ -12,12 +12,16 @@ class Menu extends BaseModel implements AuthenticatableContract
 {
     use HasFactory, Authenticatable;
 
-    protected $table = '';
-    protected $keyType = 'string'; // type data primary key
-    protected $logFillable = true; // fillable
+    protected $table = 'menus';
+    protected $keyType = 'string';
+    protected $logFillable = true;
     public $timestamps = true;
 
     protected $fillable = [
-        '',
+        'parent_id',
+        'label',
+        'code',
+        'url',
+        'icon',
     ];
 }
