@@ -8,7 +8,7 @@
 <!-- AdminLTE App -->
 <script src="{{ dist() }}/js/adminlte.js"></script>
 
-<!-- PAGE {{ plugins() }} -->
+<!-- PAGE -->
 <!-- jQuery Mapael -->
 <script src="{{ plugins() }}/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="{{ plugins() }}/raphael/raphael.min.js"></script>

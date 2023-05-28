@@ -13,3 +13,10 @@ if (!function_exists('dist')) {
         return asset('dist/');
     }
 }
+
+if (!function_exists('styleCustom')) {
+    function styleCustom()
+    {
+        return asset('custom/');
+    }
+}

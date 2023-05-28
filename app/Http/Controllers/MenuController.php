@@ -17,4 +17,9 @@ class MenuController extends BaseModule
         $GLOBALS['pageTitle'] = $this->pageTitle;
         $GLOBALS['pageSubTitle'] = $this->pageSubTitle;
     }
+
+    public function index()
+    {
+        return view('Pages.Menu.index');
+    }
 }
