@@ -31,4 +31,21 @@ class BaseModule extends Controller
 
         return response()->json($output, $code);
     }
+
+    protected function serveView($data = [], $viewBlade = 'index', $currentUrl = null, $pageTitle = null)
+    {
+        // $breadcrumb = $this->getBreadcrumb($currentUrl);
+
+        view()->share([
+            // 'route_group' => $this->getRouteGroup(),
+            // 'module' => $this->getModuleName(),
+            // 'breadcrumb' => !empty($breadcrumb['breadcrumb']) ? $breadcrumb['breadcrumb'] : [],
+            // 'pageTitle' => (empty($breadcrumb['title']) ? ($this->pageTitle ?? '-') : $breadcrumb['title']),
+            // 'currentUrl' => !empty($breadcrumb['currenturl']) ? $breadcrumb['currenturl'] : [],
+        ]);
+
+        $view = view(implode('.', array_filter(['pages', $this->module, $viewBlade])), $data);
+
+        return $view;
+    }
 }

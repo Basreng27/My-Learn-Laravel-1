@@ -16,3 +16,15 @@ ALTER TABLE users ADD COLUMN created_at TIMESTAMP;
 ALTER TABLE users ADD COLUMN updated_at TIMESTAMP;
 ALTER TABLE users ADD COLUMN deleted_at TIMESTAMP;
 
+<!-- Create Table Menu -->
+CREATE TABLE menus (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    parent_id UUID,
+    label VARCHAR(255) NOT NULL,
+    code VARCHAR(255),
+    url VARCHAR(255) NOT NULL,
+    icon VARCHAR(255) NOT NULL,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP
+);

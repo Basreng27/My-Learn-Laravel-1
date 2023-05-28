@@ -44,6 +44,7 @@ Route::group(['middleware' => ['verified', 'auth']], function () {
     Route::prefix('/admin')->group(function () {
         // Menu
         Route::get('menu', [MenuController::class, 'index'])->name('menu');
+        Route::get('create-menu', [MenuController::class, 'create'])->name('create-menu');
         // Route::resource('menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
         // // Route::delete('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
         // Route::get('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');

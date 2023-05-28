@@ -22,4 +22,17 @@ class MenuController extends BaseModule
     {
         return view('Pages.Menu.index');
     }
+
+    public function create(Request $request)
+    {
+        // return view('Pages.Menu.form');
+        // $listPermissionName = getListPermissionName();
+        // $listPermissionName = array_merge(['' => 'Pilih'], $listPermissionName);
+
+        return $this->serveView([
+            // 'parent_id'   => !empty($request->parent_id) ? $request->parent_id : '',
+            // 'routes'      => Service::getRoutesAdmin(__('Pilih')),
+            // 'permissions' => $listPermissionName,
+        ], 'form');
+    }
 }

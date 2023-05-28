@@ -20,6 +20,8 @@
 
 </body>
 
+@include('Layouts.Partials.modal')
+
 @include('Layouts.Partials.footer')
 
 </html>
