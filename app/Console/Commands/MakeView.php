@@ -27,28 +27,39 @@ class MakeView extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $path = resource_path('views/Pages/' . $name . '.blade.php');
+        $folderPath = resource_path('views/Pages/' . $name);
 
-        if (File::exists($path)) {
-            $this->error('View already exists!');
+        if (File::exists($folderPath)) {
+            $this->error('View folder already exists!');
             return 0;
         }
+
+        File::makeDirectory($folderPath);
 
         $stubFolder = 'views'; // Nama folder yang berisi file .stub
-        $stubPath = resource_path('stubs/' . $stubFolder . '/' . $name . '.stub');
 
-        if (!File::exists($stubPath)) {
-            $this->error('Stub file not found!');
-            return 0;
+        $stubFiles = ['index.stub', 'form.stub']; // Daftar file .stub yang ingin Anda gunakan
+
+        $stubsPath = base_path('app/Console/Commands/stubs/' . $stubFolder); // Path ke folder yang berisi file .stub
+
+        foreach ($stubFiles as $stubFile) {
+            $stubPath = $stubsPath . '/' . $stubFile;
+            $destinationPath = $folderPath . '/' . str_replace('.stub', '.blade.php', $stubFile);
+
+            if (!File::exists($stubPath)) {
+                $this->error('Stub file not found: ' . $stubPath);
+                continue;
+            }
+
+            $stub = File::get($stubPath);
+
+            // Tambahkan logika kustomisasi konten di sini sesuai kebutuhan Anda
+
+            File::put($destinationPath, $stub);
+
+            $this->info('View created successfully: ' . $destinationPath);
         }
 
-        $stub = File::get($stubPath);
-
-        // Tambahkan logika kustomisasi konten di sini sesuai kebutuhan Anda
-
-        File::put($path, $stub);
-
-        $this->info('View created successfully: ' . $path);
         return 0;
     }
 }
