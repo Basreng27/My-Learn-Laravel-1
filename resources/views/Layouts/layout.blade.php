@@ -20,7 +20,9 @@
 
 </body>
 
-@include('Layouts.Partials.modal')
+@if (view()->exists('Pages.' . $module . '.form'))
+    @include('Layouts.Partials.modal')
+@endif
 
 @include('Layouts.Partials.footer')
 

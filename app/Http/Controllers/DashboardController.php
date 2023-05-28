@@ -19,6 +19,6 @@ class DashboardController extends BaseModule
 
     public function index()
     {
-        return view('Pages.Dashboard.index');
+        return $this->serveView();
     }
 }

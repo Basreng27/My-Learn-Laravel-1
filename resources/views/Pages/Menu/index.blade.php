@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div id="menu"></div>
-                                        <ul id="sortable-list">
+                                        {{-- <ul id="sortable-list">
                                             <li>Item 1
                                                 <ul class="sortable-sub-list">
                                                     <li>Sub-item 1.1</li>
@@ -39,7 +39,7 @@
                                                 </ul>
                                             </li>
                                             <li>Item 4</li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                             </div>
@@ -73,50 +73,65 @@
 
 @push('custom-scripts')
     <script>
-        const sortableList = document.getElementById('sortable-list');
-
-        new Sortable(sortableList, {
-            animation: 150,
-            nested: true, // Aktifkan hierarki
-            group: {
-                name: 'sortable-group', // Ubah nama grup menjadi sortable-group
-                name: 'sortable-sub-group', // Ubah nama grup menjadi sortable-group
-            },
-        });
-
-        const sortableSubLists = document.getElementsByClassName('sortable-sub-list');
-
-        Array.from(sortableSubLists).forEach((subList) => {
-            new Sortable(subList, {
-                animation: 150,
-                nested: true, // Aktifkan hierarki
-                group: {
-                    name: 'sortable-group', // Gunakan nama grup yang sama
-                    name: 'sortable-sub-group', // Gunakan nama grup yang sama
-                },
-            });
-        });
-
         $(function() {
             $.get('{{ route('data-' . strtolower($module)) }}', function(out) {
                 var data = out.data;
+                var list = '<ul id="sortable-list">';
 
                 // Ambil elemen ul
-                var element = document.getElementById('menu');
+                // var element = document.getElementById('menu');
 
-                var elementUl = document.createElement('ul');
-                elementUl.classList.add('sortable-list');
+                // var elementUl = document.createElement('ul');
+                // elementUl.classList.add('sortable-list');
 
                 // loop data
                 data.forEach(function(item) {
-                    var elementLi = document.createElement('li');
+                    list += '<li>' + item.label;
+                    $.get('{{ route('data-' . strtolower($module) . 'item.id_parent') }}', function(
+                        outChild) {
+                        console.log(outChild)
+                    });
+                    if (item.id_parent) {
+                        list += '<ul class="sortable-sub-list">';
+                        list += '<li>' + item.label;
+                        list += '</ul>';
+                    }
 
-                    elementLi.textContent = item.label
+                    list += '</li>';
+                    // var elementLi = document.createElement('li');
 
-                    var li = elementUl.appendChild(elementLi);
+                    // elementLi.textContent = item.label
 
-                    element.appendChild(li);
+                    // var li = elementUl.appendChild(elementLi);
+                    // element.appendChild(list);
                 })
+                list += '</ul>';
+
+                $('#menu').html(list)
+
+                const sortableList = document.getElementById('sortable-list');
+
+                new Sortable(sortableList, {
+                    animation: 150,
+                    nested: true, // Aktifkan hierarki
+                    group: {
+                        name: 'sortable-group', // Ubah nama grup menjadi sortable-group
+                        name: 'sortable-sub-group', // Ubah nama grup menjadi sortable-group
+                    },
+                });
+
+                const sortableSubLists = document.getElementsByClassName('sortable-sub-list');
+
+                Array.from(sortableSubLists).forEach((subList) => {
+                    new Sortable(subList, {
+                        animation: 150,
+                        nested: true, // Aktifkan hierarki
+                        group: {
+                            name: 'sortable-group', // Gunakan nama grup yang sama
+                            name: 'sortable-sub-group', // Gunakan nama grup yang sama
+                        },
+                    });
+                });
             });
         });
     </script>

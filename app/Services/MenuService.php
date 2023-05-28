@@ -27,6 +27,21 @@ class MenuService extends BaseServices
         return self::outputResult($results);
     }
 
+    public static function dataChild($data)
+    {
+        $cursors = Model::orderBy('sequence')->get();
+        $menus = [];
+
+        foreach ($cursors as $cursor) {
+            $parent_id = !empty($cursor->parent_id) ? $cursor->parent_id : 0;
+            $menus[$parent_id][] = $cursor;
+        }
+
+        $results = count($menus) > 0 ? self::parsingMenu($menus) : [];
+
+        return self::outputResult($results);
+    }
+
     public static function parsingMenu($menus, $parent_id = 0, $route = true)
     {
         $results = [];
@@ -38,7 +53,7 @@ class MenuService extends BaseServices
 
                 $data = [
                     'id' => encrypt($menu->id),
-                    'parent_id' => encrypt($menu->parent_id) ?? null,
+                    'parent_id' => (!empty($menu->parent_id)) ? encrypt($menu->parent_id) : null,
                     'label' => $menu->label,
                     'code' => $menu->code,
                     'url'   => $url,
