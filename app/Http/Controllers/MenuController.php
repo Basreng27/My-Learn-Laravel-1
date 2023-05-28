@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bases\BaseModule;
 use Illuminate\Http\Request;
+use App\Services\MenuService as Service;
 
 class MenuController extends BaseModule
 {
@@ -16,7 +17,8 @@ class MenuController extends BaseModule
 
     public function index()
     {
-        return $this->serveView();
-        // return view('Pages.Menu.index');
+        return $this->serveView([
+            'routes' => Service::getRoutesAdmin('Select')
+        ]);
     }
 }
