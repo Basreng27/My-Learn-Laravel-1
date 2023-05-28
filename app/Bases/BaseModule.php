@@ -38,7 +38,7 @@ class BaseModule extends Controller
 
         view()->share([
             // 'route_group' => $this->getRouteGroup(),
-            // 'module' => $this->getModuleName(),
+            'module' => $this->getModuleName(),
             // 'breadcrumb' => !empty($breadcrumb['breadcrumb']) ? $breadcrumb['breadcrumb'] : [],
             // 'pageTitle' => (empty($breadcrumb['title']) ? ($this->pageTitle ?? '-') : $breadcrumb['title']),
             // 'currentUrl' => !empty($breadcrumb['currenturl']) ? $breadcrumb['currenturl'] : [],
@@ -47,5 +47,10 @@ class BaseModule extends Controller
         $view = view(implode('.', array_filter(['pages', $this->module, $viewBlade])), $data);
 
         return $view;
+    }
+
+    protected function getModuleName()
+    {
+        return $this->module;
     }
 }

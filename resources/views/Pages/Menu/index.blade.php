@@ -11,10 +11,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('create-' . strtolower($GLOBALS['pageTitle'])) }}" class="btn btn-info"
-                                    data-toggle="modal" data-target="#modal-sm">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg">
                                     <i class="fa-solid fa-plus"></i> Add
-                                </a>
+                                </button>
                             </div>
 
                             <div class="card-body">
@@ -95,35 +94,6 @@
                     name: 'sortable-sub-group', // Gunakan nama grup yang sama
                 },
             });
-        });
-
-        function initModalAjax(selector) {
-            var selector_triger = typeof selector !== 'undefined' ? selector : '[data-toggle="modal"]';
-
-            $(selector_triger).on('click', function(e) {
-                /* Parameters */
-                var url = $(this).attr('href');
-                let containerTarget = $(this).attr('data-target');
-                let form = $(this).attr('data-form');
-                let data = $(form).serialize();
-
-                if (url.indexOf('#') == 0) {
-                    $(containerTarget).modal();
-                } else {
-                    /* XHR */
-                    var loading =
-                        '<div class="text-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>';
-
-                    $(containerTarget).modal();
-                    $('.modal-content', $(containerTarget)).html(loading).load(url, data, function() {});
-
-                }
-                return false;
-            });
-        }
-
-        $(function() {
-            initModalAjax('[data-toggle="modal"]');
         });
     </script>
 @endpush
