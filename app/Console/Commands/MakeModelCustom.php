@@ -36,7 +36,7 @@ class MakeModelCustom extends Command
         }
 
         $stub = file_get_contents(__DIR__ . '/stubs/Model.stub');
-        $stub = str_replace('{{class}}', $className, $stub);
+        $stub = str_replace('{{ class }}', $className, $stub);
 
         file_put_contents($filename, $stub);
 

@@ -27,7 +27,7 @@ class MakeServices extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $className = Str::studly($name) . 'Service';
+        $className = Str::studly($name);
         $filename = app_path('Services/' . $className . '.php');
 
         if (file_exists($filename)) {
@@ -36,7 +36,7 @@ class MakeServices extends Command
         }
 
         $stub = file_get_contents(__DIR__ . '/stubs/Service.stub');
-        $stub = str_replace('{{class}}', $className, $stub);
+        $stub = str_replace('{{ class }}', $className, $stub);
 
         file_put_contents($filename, $stub);
 

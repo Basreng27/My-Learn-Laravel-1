@@ -27,7 +27,7 @@ class MakeView extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $path = resource_path('views/Pages/' . $name . '/' . $name . '.blade.php');
+        $path = resource_path('views/Pages/' . $name . '.blade.php');
 
         if (File::exists($path)) {
             $this->error('View already exists!');
