@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Bases\BaseModule;
 use Illuminate\Http\Request;
 
-class {{ class }} extends BaseModule
+class MenuController extends BaseModule
 {
     public function __construct()
     {
-        $this->module = '{{ module }}';
-        $this->pageTitle = '{{ module }}';
-        $this->pageSubTitle = '{{ module }}';
+        $this->module = 'Menu';
+        $this->pageTitle = 'Menu';
+        $this->pageSubTitle = 'Menu';
 
         $GLOBALS['module'] = $this->module;
         $GLOBALS['pageTitle'] = $this->pageTitle;

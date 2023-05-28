@@ -29,6 +29,7 @@ class MakeControllerCustom extends Command
         $name = $this->argument('name');
         $className = Str::studly($name);
         $filename = app_path('Http/Controllers/' . $className . '.php');
+        $module = str_replace('Controller', '', $name);
 
         if (file_exists($filename)) {
             $this->error('Controller already exists!');
@@ -37,6 +38,7 @@ class MakeControllerCustom extends Command
 
         $stub = file_get_contents(__DIR__ . '/stubs/Controller.stub');
         $stub = str_replace('{{ class }}', $className, $stub);
+        $stub = str_replace('{{ module }}', $module, $stub);
 
         file_put_contents($filename, $stub);
 

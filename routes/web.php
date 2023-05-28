@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,16 +40,16 @@ Route::group(['middleware' => ['verified', 'auth']], function () {
     // Dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // // Admin
-    // Route::prefix('/admin')->group(function () {
-    //     // Menu
-    //     Route::resource('menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
-    //     Route::get('create-menu', [\App\Http\Controllers\MenuController::class, 'create'])->name('create-menu');
-    //     // Route::delete('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
-    //     Route::get('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
-    //     Route::get('data-menu', [\App\Http\Controllers\MenuController::class, 'data'])->name('data-menu');
-    //     Route::get('edit-menu/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('edit-menu');
-    //     // Route::put('edit-menu/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('edit-menu');
-    //     Route::put('menu-orderSave', [\App\Http\Controllers\MenuController::class, 'saveOrder'])->name('menu-saveOrder');
-    // });
+    // Admin
+    Route::prefix('/admin')->group(function () {
+        // Menu
+        Route::get('menu', [MenuController::class, 'index'])->name('menu');
+        // Route::resource('menu', \App\Http\Controllers\MenuController::class, ['names' => 'menu']);
+        // // Route::delete('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
+        // Route::get('destroy-menu/{id}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('destroy-menu');
+        // Route::get('data-menu', [\App\Http\Controllers\MenuController::class, 'data'])->name('data-menu');
+        // Route::get('edit-menu/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('edit-menu');
+        // // Route::put('edit-menu/{menu}', [\App\Http\Controllers\MenuController::class, 'edit'])->name('edit-menu');
+        // Route::put('menu-orderSave', [\App\Http\Controllers\MenuController::class, 'saveOrder'])->name('menu-saveOrder');
+    });
 });
