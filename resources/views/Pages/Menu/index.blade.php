@@ -77,34 +77,30 @@
             $.get('{{ route('data-' . strtolower($module)) }}', function(out) {
                 var data = out.data;
                 var list = '<ul id="sortable-list">';
-
-                // Ambil elemen ul
-                // var element = document.getElementById('menu');
-
-                // var elementUl = document.createElement('ul');
-                // elementUl.classList.add('sortable-list');
+                var list_sub = '';
 
                 // loop data
                 data.forEach(function(item) {
+                    var url = '{{ route('data-child-' . strtolower($module), ['id' => ':id']) }}'
+                        .replace(':id', item.id);
+
                     list += '<li>' + item.label;
-                    $.get('{{ route('data-' . strtolower($module) . 'item.id_parent') }}', function(
-                        outChild) {
-                        console.log(outChild)
+
+                    list += '<ul class="sortable-sub-list" id="sub-list">'
+
+                    $.get(url, function(child) {
+                        var data_child = child.data;
+                        data_child.forEach(function(item_child) {
+                            list_sub += '<li>' + item_child.label + '</li>'
+                        });
+
+                        $('#sub-list').html(list_sub)
                     });
-                    if (item.id_parent) {
-                        list += '<ul class="sortable-sub-list">';
-                        list += '<li>' + item.label;
-                        list += '</ul>';
-                    }
 
                     list += '</li>';
-                    // var elementLi = document.createElement('li');
-
-                    // elementLi.textContent = item.label
-
-                    // var li = elementUl.appendChild(elementLi);
-                    // element.appendChild(list);
+                    list += '</li>';
                 })
+
                 list += '</ul>';
 
                 $('#menu').html(list)

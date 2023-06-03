@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Crypt; //package untuk encrpy decrypt
 
 use App\Bases\BaseServices;
 use Illuminate\Support\Facades\Route;
-use App\Models\Menu as Model;
+// use App\Models\Menu as Model;
+use App\Models\Menu as model;
 
 class MenuService extends BaseServices
 {
@@ -27,9 +28,10 @@ class MenuService extends BaseServices
         return self::outputResult($results);
     }
 
-    public static function dataChild($data)
+    public static function dataChild($id)
     {
-        $cursors = Model::orderBy('sequence')->get();
+        $cursors = Model::where('parent_id', decrypt($id))->orderBy('sequence')->get();
+
         $menus = [];
 
         foreach ($cursors as $cursor) {
@@ -37,9 +39,34 @@ class MenuService extends BaseServices
             $menus[$parent_id][] = $cursor;
         }
 
-        $results = count($menus) > 0 ? self::parsingMenu($menus) : [];
+        $results = count($menus) > 0 ? self::parsingChildMenu($menus, $parent_id) : [];
 
         return self::outputResult($results);
+    }
+
+    public static function parsingChildMenu($menus, $parent_id = 0, $route = true)
+    {
+        $results = [];
+
+        if (!empty($menus[$parent_id])) {
+            foreach ($menus[$parent_id] as $menu) {
+                $url =  $menu->url;
+
+                $data = [
+                    'id' => encrypt($menu->id),
+                    'parent_id' => (!empty($menu->parent_id)) ? encrypt($menu->parent_id) : null,
+                    'label' => $menu->label,
+                    'code' => $menu->code,
+                    'url'   => $url,
+                    'icon'  => $menu->icon,
+                    'sequence'  => $menu->sequence,
+                ];
+
+                $results[] = $data;
+            }
+        }
+
+        return $results;
     }
 
     public static function parsingMenu($menus, $parent_id = 0, $route = true)
@@ -48,7 +75,6 @@ class MenuService extends BaseServices
 
         if (!empty($menus[$parent_id])) {
             foreach ($menus[$parent_id] as $menu) {
-                // $url = $menu->custom_url ? $menu->url : (($route) ? route(($menu->url == 'Select') ? '#' : $menu->url) : $menu->url);
                 $url =  $menu->url;
 
                 $data = [

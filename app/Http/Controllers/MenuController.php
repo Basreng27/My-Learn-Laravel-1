@@ -29,9 +29,9 @@ class MenuController extends BaseModule
         return $this->serveJSON($result);
     }
 
-    public function dataChild(Request $request)
+    public function dataChild($id)
     {
-        $result = Service::dataChild($request);
+        $result = Service::dataChild($id);
 
         return $this->serveJSON($result);
     }
