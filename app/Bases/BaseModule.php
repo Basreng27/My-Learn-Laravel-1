@@ -35,20 +35,20 @@ class BaseModule extends Controller
 
     protected function serveView($data = [], $viewBlade = 'index', $currentUrl = null, $pageTitle = null)
     {
-        // $breadcrumb = $this->getBreadcrumb($currentUrl);
-
         view()->share([
-            // 'route_group' => $this->getRouteGroup(),
+            'pageTitle' => $this->getTitle(),
             'module' => $this->getModuleName(),
-            // 'breadcrumb' => !empty($breadcrumb['breadcrumb']) ? $breadcrumb['breadcrumb'] : [],
-            // 'pageTitle' => (empty($breadcrumb['title']) ? ($this->pageTitle ?? '-') : $breadcrumb['title']),
-            // 'currentUrl' => !empty($breadcrumb['currenturl']) ? $breadcrumb['currenturl'] : [],
             'menus' => Menu::data()
         ]);
 
         $view = view(implode('.', array_filter(['pages', $this->module, $viewBlade])), $data);
 
         return $view;
+    }
+
+    protected function getTitle()
+    {
+        return $this->pageTitle;
     }
 
     protected function getModuleName()
