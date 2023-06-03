@@ -8,3 +8,18 @@
   color: #007bff;
   background-color: white;
 }
+
+.btn-outline-perak {
+  color: #c0c0c0;
+  background-color: transparent;
+  border: 1px solid #c0c0c0;
+}
+
+.btn-outline-perak:hover {
+  color: #007bff;
+  background-color: #c0c0c0;
+}
+
+.text-left {
+  text-align: left;
+}

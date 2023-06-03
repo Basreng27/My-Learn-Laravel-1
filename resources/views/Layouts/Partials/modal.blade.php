@@ -21,3 +21,11 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-option">
+    <div class="modal-dialog modal-option">
+        <div class="modal-content">
+            @include('Pages.' . $module . '.options')
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-lg">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">
                                     <i class="fa-solid fa-plus"></i> Add
                                 </button>
                             </div>
@@ -20,42 +20,6 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div id="menu"></div>
-                                        {{-- <ul id="sortable-list">
-                                            <li>Item 1
-                                                <ul class="sortable-sub-list">
-                                                    <li>Sub-item 1.1</li>
-                                                    <li>Sub-item 1.2</li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="btn btn-outline-white btn-block"><i
-                                                        class="fa fa-bell"></i> .btn-block</button>
-                                            </li>
-                                            <li>Item 3
-                                                <ul class="sortable-sub-list">
-                                                    <li>Sub-item 3.1</li>
-                                                    <li>Sub-item 3.2</li>
-                                                    <li>Sub-item 3.3</li>
-                                                </ul>
-                                            </li>
-                                            <li>Item 4</li>
-                                        </ul> --}}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-sm-3 col-6">
-                                    </div>
-
-                                    <div class="col-sm-3 col-6">
-                                    </div>
-
-                                    <div class="col-sm-3 col-6">
-                                    </div>
-
-                                    <div class="col-sm-3 col-6">
                                     </div>
                                 </div>
                             </div>
@@ -84,20 +48,26 @@
                     var url = '{{ route('data-child-' . strtolower($module), ['id' => ':id']) }}'
                         .replace(':id', item.id);
 
-                    list += '<li>' + item.label;
+                    list +=
+                        '<li> <button type="button" class="text-left btn btn-outline-white btn-block" data-toggle="modal" data-target="#modal-option">' +
+                        '<i class="fa ' + item.icon + '"></i> ' + item.label + '</button>';
 
                     list += '<ul class="sortable-sub-list" id="sub-list">'
 
                     $.get(url, function(child) {
                         var data_child = child.data;
                         data_child.forEach(function(item_child) {
-                            list_sub += '<li>' + item_child.label + '</li>'
+                            list_sub +=
+                                '<li> <button type="button" class="text-left btn btn-outline-perak btn-block">' +
+                                '<i class="fa ' + item_child.icon + '"></i> ' +
+                                item_child.label +
+                                '</button></li>';
                         });
 
                         $('#sub-list').html(list_sub)
                     });
 
-                    list += '</li>';
+                    list += '</ul>';
                     list += '</li>';
                 })
 

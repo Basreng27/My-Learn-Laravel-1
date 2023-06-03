@@ -22,7 +22,7 @@
         <div class="form-group">
             <label>Url <span class="required-field">*</span></label>
             <select class="form-control select2" name="url" style="width: 100%;">
-                {{-- <option selected="selected">Alabama</option> --}}
+                {{-- <option value="" selected="selected">--- Select ---</option> --}}
                 @foreach ($routes as $route)
                     <option value="{{ $route }}" selected="selected">{{ $route }}</option>
                 @endforeach
