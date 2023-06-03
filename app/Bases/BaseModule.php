@@ -3,6 +3,7 @@
 namespace App\Bases;
 
 use App\Http\Controllers\Controller;
+use App\Services\MenuService as Menu;
 
 class BaseModule extends Controller
 {
@@ -42,6 +43,7 @@ class BaseModule extends Controller
             // 'breadcrumb' => !empty($breadcrumb['breadcrumb']) ? $breadcrumb['breadcrumb'] : [],
             // 'pageTitle' => (empty($breadcrumb['title']) ? ($this->pageTitle ?? '-') : $breadcrumb['title']),
             // 'currentUrl' => !empty($breadcrumb['currenturl']) ? $breadcrumb['currenturl'] : [],
+            'menus' => Menu::data()
         ]);
 
         $view = view(implode('.', array_filter(['pages', $this->module, $viewBlade])), $data);

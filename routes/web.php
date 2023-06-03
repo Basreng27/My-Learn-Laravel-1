@@ -37,11 +37,11 @@ Route::prefix('/regist')->middleware('guest')->group(function () {
 
 // Logged
 Route::group(['middleware' => ['verified', 'auth']], function () {
-    // Dashboard
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     // Admin
     Route::prefix('/admin')->group(function () {
+        // Dashboard
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
         // Menu
         Route::get('menu', [MenuController::class, 'index'])->name('menu');
         Route::post('save-menu', [MenuController::class, 'store'])->name('save-menu');

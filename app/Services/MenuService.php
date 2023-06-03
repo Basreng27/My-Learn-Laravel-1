@@ -13,7 +13,7 @@ use App\Models\Menu as model;
 
 class MenuService extends BaseServices
 {
-    public static function data($data)
+    public static function data($data = '')
     {
         $cursors = Model::orderBy('sequence')->get();
         $menus = [];
