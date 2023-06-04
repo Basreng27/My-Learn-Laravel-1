@@ -212,7 +212,7 @@
                   icon: '<i class="fas fa-edit"></i>',
                   title: "Edit",
                   className: "btn btn-light p-1 pb-0",
-                  modal: "#modal-md",
+                  modal: "#modal-lg",
                   toggle: "modal-edit",
                 };
               } else if (val.id == "delete") {

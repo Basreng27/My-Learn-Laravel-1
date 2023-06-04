@@ -5,18 +5,22 @@
     </button>
 </div>
 
-<form action="{{ route('save-user') }}" method="POST">
+<form action="{{ route(!empty($data->id) ? 'update-user' : 'save-user') }}" method="POST">
     <div class="modal-body">
         @csrf
 
+        <input type="hidden" name="id" value="{{ $data->id ?? null }}">
+
         <div class="form-group">
             <label>Name <span class="required-field">*</span></label>
-            <input type="text" class="form-control" name="name" placeholder="name" required>
+            <input type="text" class="form-control" name="name" value="{{ $data->name ?? null }}"
+                placeholder="name" required>
         </div>
 
         <div class="form-group">
             <label>Email <span class="required-field">*</span></label>
-            <input type="email" class="form-control" name="email" placeholder="Email" required>
+            <input type="email" class="form-control" name="email" value="{{ $data->email ?? null }}"
+                placeholder="Email" required>
         </div>
 
         <div class="form-group">

@@ -60,5 +60,7 @@ Route::group(['middleware' => ['verified', 'auth']], function () {
         Route::get('users', [MasterUsersController::class, 'index'])->name('users');
         Route::post('save-user', [MasterUsersController::class, 'store'])->name('save-user');
         Route::get('data-user', [MasterUsersController::class, 'data'])->name('data-user');
+        Route::get('edit-user/{id}', [MasterUsersController::class, 'edit'])->name('edit-user');
+        Route::post('update-user', [MasterUsersController::class, 'update'])->name('update-user');
     });
 });

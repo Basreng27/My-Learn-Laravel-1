@@ -55,4 +55,14 @@ class BaseModule extends Controller
     {
         return $this->module;
     }
+
+    protected function serveValidations($validations)
+    {
+        return response()->json([
+            'code' => 422,
+            'status' => 'fail',
+            'message' => __('errors.422'),
+            'data' => $validations
+        ], 422);
+    }
 }

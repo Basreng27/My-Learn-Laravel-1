@@ -22,9 +22,8 @@
                                         @include('Layouts.Components.datatables', [
                                             'id' => 'data-tabless',
                                             'form_filter' => '#form-filter',
-                                            'header' => ['No', 'Name', 'Email'],
+                                            'header' => ['', 'No', 'Name', 'Email', 'Action'],
                                             'data_source' => route('data-user'),
-                                            // 'delete_action' => route($module . '.destroys'),
                                         ])
                                     </div>
                                 </div>
@@ -39,28 +38,16 @@
 
 @push('custom-scripts')
     <script>
-        // $(function() {
-        //     $("#data-tabless").DataTable({
-        //         paging: true,
-        //         lengthChange: false,
-        //         searching: false,
-        //         ordering: true,
-        //         info: true,
-        //         autoWidth: false,
-        //         responsive: true,
-        //     });
-        // });
-
         var oTable = $('#data-tabless').myDataTable({
-            buttons: [{
-                id: 'add',
-                className: 'btn btn primary',
-                url: '{{ route('data-user') }}'
-            }],
+            // buttons: [{
+            //     id: 'add',
+            //     className: 'btn btn primary',
+            //     url: '{{ route('data-user') }}'
+            // }],
             actions: [{
                     id: 'edit',
                     className: 'btn btn-light btn-sm',
-                    url: '{{ route('data-user') }}'
+                    url: '{{ route('edit-user', ['__grid_doc__']) }}'
                 },
                 {
                     id: 'delete',

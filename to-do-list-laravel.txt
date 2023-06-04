@@ -30,6 +30,7 @@ Menu Side Bar -> DONE
 	CRUD ->
 	CSRF CRUD ->
     Filters ->
+    Reset Password ->
 	Redirect and Notif After CRUD
 	Master Icon ->
 	Toastr ->
