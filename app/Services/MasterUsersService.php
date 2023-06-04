@@ -14,7 +14,10 @@ class MasterUsersService extends BaseServices
 {
     public static function data($request)
     {
-        $query = Model::orderBy('name')->data();
+        // $query = Model::orderBy('name')->data();
+        $query = Model::orderBy('name')->get();
+        // echo '<pre>' . print_r($query, true);
+        // exit(1);
 
         return DataTables::of($query)
             ->filter(function ($query) use ($request) {

@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         @include('Layouts.Components.datatables', [
-                                            'id' => 'example2',
+                                            'id' => 'data-tabless',
                                             'form_filter' => '#form-filter',
                                             'header' => ['No', 'Name', 'Email'],
                                             'data_source' => route('data-user'),
@@ -39,10 +39,22 @@
 
 @push('custom-scripts')
     <script>
-        var outTable = ('#example2').myDataTable({
+        // $(function() {
+        //     $("#data-tabless").DataTable({
+        //         paging: true,
+        //         lengthChange: false,
+        //         searching: false,
+        //         ordering: true,
+        //         info: true,
+        //         autoWidth: false,
+        //         responsive: true,
+        //     });
+        // });
+
+        var oTable = $('#data-tabless').myDataTable({
             buttons: [{
                 id: 'add',
-                classNane: 'btn btn primary',
+                className: 'btn btn primary',
                 url: '{{ route('data-user') }}'
             }],
             actions: [{
@@ -74,6 +86,10 @@
                     name: 'name'
                 },
                 {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
                     data: 'action',
                     className: 'text-center',
                     width: '120px',
@@ -91,8 +107,8 @@
         })
 
         $(function() {
-            initPage();
-            initDatatableTools($('#example2'), outTable);
+            // initPage();
+            initDatatableTools($('#example2'), oTable);
         });
     </script>
 @endpush
