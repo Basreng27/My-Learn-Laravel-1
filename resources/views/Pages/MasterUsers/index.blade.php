@@ -52,7 +52,7 @@
                 {
                     id: 'delete',
                     className: 'btn btn-danger btn-sm btn-delete',
-                    url: '{{ route('data-user') }}'
+                    url: '{{ route('destroy-user', ['__grid_doc__']) }}'
                 }
             ],
             columns: [{

@@ -71,4 +71,11 @@ class MasterUsersController extends BaseModule
 
         return $this->serveJSON($result);
     }
+
+    public function destroy($id)
+    {
+        $result = Service::destroy(decrypt($id));
+
+        return $this->serveJSON($result);
+    }
 }

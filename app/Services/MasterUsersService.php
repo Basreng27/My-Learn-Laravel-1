@@ -76,4 +76,9 @@ class MasterUsersService extends BaseServices
             return $model;
         });
     }
+
+    public static function destroy($id)
+    {
+        return Model::find($id)->delete();
+    }
 }

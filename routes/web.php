@@ -62,5 +62,6 @@ Route::group(['middleware' => ['verified', 'auth']], function () {
         Route::get('data-user', [MasterUsersController::class, 'data'])->name('data-user');
         Route::get('edit-user/{id}', [MasterUsersController::class, 'edit'])->name('edit-user');
         Route::post('update-user', [MasterUsersController::class, 'update'])->name('update-user');
+        Route::get('destroy-user/{id}', [MasterUsersController::class, 'destroy'])->name('destroy-user');
     });
 });
