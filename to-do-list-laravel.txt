@@ -20,20 +20,20 @@ Middleware Page Can't Go Dashboard If Not Login -> DONE
 Dashboard -> DONE
 	Activity Log ->
 Make Module -> DONE
+    Content Make Module ->
 	Input Text Take From File ->
 Module Menu -> DONE
 Menu Side Bar -> DONE
 	Update, Delete, Insert Sub Menu ->
 	Save Sequence ->
 	Permission ->
-	Master User ->
-	CRUD ->
-	CSRF CRUD ->
+Master User -> DONE
+	CRUD -> DONE
+CSRF CRUD -> DONE
     Filters ->
     Reset Password ->
 	Redirect and Notif After CRUD
 	Master Icon ->
-	Toastr ->
 	Upload File ->
 	Reviewer ->
 	Notification ->
