@@ -29,6 +29,7 @@ Menu Side Bar -> DONE
 	Master User ->
 	CRUD ->
 	CSRF CRUD ->
+    Filters ->
 	Redirect and Notif After CRUD
 	Master Icon ->
 	Toastr ->

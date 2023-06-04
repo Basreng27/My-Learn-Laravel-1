@@ -45,8 +45,6 @@ class MenuController extends BaseModule
 
     public function oneData(Request $request)
     {
-        echo '<pre>' . print_r(111, true);
-        exit(1);
         $result = Service::store($request);
 
         return $this->serveJSON($result);

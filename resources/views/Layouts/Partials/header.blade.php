@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{{ plugins() }}/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <link rel="stylesheet" href="{{ plugins() }}/bs-stepper/css/bs-stepper.min.css">
     <link rel="stylesheet" href="{{ plugins() }}/dropzone/min/dropzone.min.css">
+    <link rel="stylesheet" href="{{ plugins() }}/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ plugins() }}/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ plugins() }}/datatables-buttons/css/buttons.bootstrap4.min.css">
 
     <link rel="stylesheet" href="{{ styleCustom() }}/css/styleCustom.css">
 

@@ -19,7 +19,13 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div id="menu"></div>
+                                        @include('Layouts.Components.datatables', [
+                                            'id' => 'example2',
+                                            'form_filter' => '#form-filter',
+                                            'header' => ['No', 'Name', 'Email'],
+                                            'data_source' => route('data-user'),
+                                            // 'delete_action' => route($module . '.destroys'),
+                                        ])
                                     </div>
                                 </div>
                             </div>
@@ -30,3 +36,63 @@
         </section>
     </div>
 @endsection
+
+@push('custom-scripts')
+    <script>
+        var outTable = ('#example2').myDataTable({
+            buttons: [{
+                id: 'add',
+                classNane: 'btn btn primary',
+                url: '{{ route('data-user') }}'
+            }],
+            actions: [{
+                    id: 'edit',
+                    className: 'btn btn-light btn-sm',
+                    url: '{{ route('data-user') }}'
+                },
+                {
+                    id: 'delete',
+                    className: 'btn btn-danger btn-sm btn-delete',
+                    url: '{{ route('data-user') }}'
+                }
+            ],
+            columns: [{
+                    data: 'checkbox',
+                    className: 'text-center',
+                    width: '30px',
+                },
+                {
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                    width: '30px',
+                    className: 'text-center',
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'action',
+                    className: 'text-center',
+                    width: '120px',
+                }
+            ],
+            onDraw: function() {
+                initModalAjax('[data-toggle="modal-edit"]');
+                initDatatableAction($(this), function() {
+                    oTable.reload();
+                });
+            },
+            onComplete: function() {
+                initModalAjax();
+            },
+        })
+
+        $(function() {
+            initPage();
+            initDatatableTools($('#example2'), outTable);
+        });
+    </script>
+@endpush
