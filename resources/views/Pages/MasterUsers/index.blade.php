@@ -4,7 +4,29 @@
     <div class="content-wrapper">
         @include('Layouts.Partials.breadCumb')
 
-        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {{ Form::open(['id' => 'form-filter', 'autocomplete' => 'off']) }}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control" name="name" placeholder="name">
+                                        </div>
+                                    </div>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -94,7 +116,7 @@
         })
 
         $(function() {
-            // initPage();
+            initPage();
             initDatatableTools($('#example2'), oTable);
         });
     </script>

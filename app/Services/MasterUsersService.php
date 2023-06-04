@@ -32,8 +32,8 @@ class MasterUsersService extends BaseServices
         return DataTables::of($query)
             ->filter(function ($query) use ($request) {
 
-                // if (!empty($request->name))
-                //     $query->whereLike('name', $request->name);
+                if (!empty($request->name))
+                    $query->whereLike('name', $request->name);
             })
             ->addIndexColumn()
             ->addColumn('id', function ($query) {
